@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,21 +21,25 @@ public class FirstActivity extends AppCompatActivity {
         setContentView(R.layout.first_layout);
 
         Button btn = (Button)findViewById(R.id.btn_1);
-        /*btn.setOnClickListener(new View.OnClickListener() {
+/*
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(FirstActivity.this, "You click Button 1", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
+*/
         // 显式Intent
-        /*btn.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                intent.putExtra("data","data");
                 startActivity(intent);
             }
-        });*/
+        });
         //隐式Intent
+/*
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +48,27 @@ public class FirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+*/
+/*
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://www.baidu.com"));
+                startActivity(intent);
+            }
+        });
+*/
+/*
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:10086"));
+                startActivity(intent);
+            }
+        });
+*/
 
 
     }
