@@ -14,15 +14,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class FirstActivity extends AppCompatActivity {
+public class FirstActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        Log.d("FirstActivity", this.toString());
+        Log.d("FirstActivity", "Task id is " + getTaskId());
+
+
         setContentView(R.layout.first_layout);
 
         Button btn = (Button)findViewById(R.id.btn_1);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                startActivity(intent);*/
+                SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
+            }
+        });
 /*
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,13 +87,15 @@ public class FirstActivity extends AppCompatActivity {
         });
 */
         // startActivityForResult
+/*
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                Intent intent = new Intent(FirstActivity.this, FirstActivity.class);
                 startActivityForResult(intent, 1);
             }
         });
+*/
     }
 
     @Override
@@ -95,12 +110,16 @@ public class FirstActivity extends AppCompatActivity {
             default:
         }
     }
+/*
 
+    //Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+*/
+/*
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -114,5 +133,12 @@ public class FirstActivity extends AppCompatActivity {
             default:
         }
         return true;
+    }
+*/
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("FirstActivity", "onRestart");
     }
 }
