@@ -1,11 +1,13 @@
 package com.example.activitytest;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +32,7 @@ public class FirstActivity extends AppCompatActivity {
         });
 */
         // 显式Intent
+/*
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +41,7 @@ public class FirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+*/
         //隐式Intent
 /*
         btn.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +73,27 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 */
+        // startActivityForResult
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data");
+                    Log.d("FirstActivity", returnedData);
+                }
+                break;
+            default:
+        }
     }
 
     @Override
